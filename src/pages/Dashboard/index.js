@@ -5,6 +5,8 @@ import './styles.css';
 
 export default function Dashboard() {
     const [ spots, setSpots ] = useState([]);
+    const [ deleted, setDeleted ] = useState(0);
+    
     useEffect(() => {
         async function loadSpots() {
             const user_id = localStorage.getItem('user');
@@ -15,7 +17,12 @@ export default function Dashboard() {
         }
 
         loadSpots();
-    }, []);
+    }, [deleted]);
+
+    async function handleRemove(item) {
+        await api.delete(`/spots/${item._id}`);
+        setDeleted(deleted + 1);
+    }
     
     return (
         <>
@@ -24,7 +31,9 @@ export default function Dashboard() {
                     <li key={spot._id}>
                         <header style={{ 
                             backgroundImage: `url(${spot.thumbnail_url})`
-                        }} />
+                        }}>
+                            <span href="#" onClick={event => { handleRemove(spot); }}>X</span>
+                        </header>
                         <strong>{spot.company}</strong>
                         <span>{spot.price ? `R$ ${spot.price}/dia` : 'GRATUITO'}</span>
                     </li>

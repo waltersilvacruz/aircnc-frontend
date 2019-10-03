@@ -19,6 +19,20 @@ ul.spot-list li header {
     border-radius: 4px;
 }
 
+ul.spot-list li header span {
+    float: right;
+    background: rgba(240, 24, 60, 0.904);
+    cursor: pointer;
+    padding: 6px 12px;
+    margin: -10px -10px 0 0;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 50%;
+    height: 30px;
+
+}
+
 ul.spot-list li strong {
     margin-top: 10px;
     font-size: 24px;
